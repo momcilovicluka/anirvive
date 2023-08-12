@@ -9,7 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-/[Aa]ssets/
+/[Aa]ssets/Downloaded/
+/[Aa]ssets/Plugins/
 
 # Assets Custom
 #*.tif
