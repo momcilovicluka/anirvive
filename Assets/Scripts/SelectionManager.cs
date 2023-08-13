@@ -1,39 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
+    public static SelectionManager instance { get; private set; }
+
     public TMPro.TextMeshProUGUI interactionInfo;
+    public bool onTarger;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else instance = this;
+    }
 
     private void Start()
     {
         interactionInfo.text = "";
+        onTarger = false;
     }
 
-    void Update()
+    private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
 
-
         if (Physics.Raycast(ray, out hit))
         {
             var selectionTransform = hit.transform;
+            InteractableObject interactableObject = selectionTransform.GetComponent<InteractableObject>();
 
-            if (selectionTransform.GetComponent<InteractableObject>())
+            if (interactableObject && interactableObject.playerInRange)
             {
-                interactionInfo.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
+                interactionInfo.text = interactableObject.GetItemName();
+                onTarger = true;
             }
             else
             {
                 interactionInfo.text = "";
+                onTarger = false;
             }
-
+        }
+        else
+        {
+            interactionInfo.text = "";
+            onTarger = false;
         }
     }
 }
