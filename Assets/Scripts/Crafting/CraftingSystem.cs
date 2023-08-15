@@ -36,6 +36,8 @@ public class CraftingSystem : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        StartCoroutine(calculate());
+
         isOpen = false;
         toolsBTN = craftingScreenUI.transform.Find("ToolsButton").GetComponent<Button>();
         toolsBTN.onClick.AddListener(delegate { OpenToolsCategory(); });
@@ -62,7 +64,7 @@ public class CraftingSystem : MonoBehaviour
 
     public IEnumerator<WaitForSeconds> calculate()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
 
         InventorySystem.Instance.ReCalculateList();
 

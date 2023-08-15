@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,5 +67,20 @@ public class PlayerState : MonoBehaviour
             distanceTravelled = 0;
             currentCalories--;
         }
+    }
+
+    internal void setHealth(float maxHealth)
+    {
+        currentHealth = maxHealth;
+    }
+
+    internal void setCalories(float maxCalories)
+    {
+        currentCalories = maxCalories;
+    }
+
+    internal void setHydration(float v)
+    {
+        currentHydration = v;
     }
 }

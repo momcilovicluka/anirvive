@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance { get; set; }
+    public GameObject ItemInfoUI;
 
     public GameObject inventoryScreenUI;
     public bool isOpen;
