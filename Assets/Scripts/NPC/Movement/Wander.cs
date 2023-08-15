@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// Creates wandering behaviour for a CharacterController.
@@ -19,11 +19,11 @@ public class Wander : MonoBehaviour
 
     private Animator animator;
 
-    CharacterController controller;
-    float heading;
-    Vector3 targetRotation;
+    private CharacterController controller;
+    private float heading;
+    private Vector3 targetRotation;
 
-    void Awake()
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -41,24 +41,23 @@ public class Wander : MonoBehaviour
         StartCoroutine(NewHeading());
     }
 
-    void Update()
+    private void Update()
     {
-        if(isWalking)
+        if (isWalking)
         {
             animator.SetBool("isRunning", true);
             transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
             var forward = transform.TransformDirection(Vector3.forward);
             controller.SimpleMove(forward * speed);
-            
+
             walkCounter -= Time.deltaTime;
-            
+
             if (walkCounter < 0)
             {
                 isWalking = false;
                 animator.SetBool("isRunning", false);
                 waitCounter = waitTime;
             }
-
         }
         else
         {
@@ -75,7 +74,7 @@ public class Wander : MonoBehaviour
     /// Repeatedly calculates a new direction to move towards.
     /// Use this instead of MonoBehaviour.InvokeRepeating so that the interval can be changed at runtime.
     /// </summary>
-    IEnumerator NewHeading()
+    private IEnumerator NewHeading()
     {
         while (true)
         {
@@ -87,12 +86,11 @@ public class Wander : MonoBehaviour
     /// <summary>
     /// Calculates a new direction to move towards.
     /// </summary>
-    void NewHeadingRoutine()
+    private void NewHeadingRoutine()
     {
         var floor = Mathf.Clamp(heading - maxHeadingChange, 0, 360);
         var ceil = Mathf.Clamp(heading + maxHeadingChange, 0, 360);
         heading = Random.Range(floor, ceil);
         targetRotation = new Vector3(0, heading, 0);
-
     }
 }

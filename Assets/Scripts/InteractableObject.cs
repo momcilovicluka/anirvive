@@ -14,13 +14,12 @@ public class InteractableObject : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && SelectionManager.instance.onTarget && SelectionManager.instance.selectedObject == gameObject)
         {
-            if(InventorySystem.Instance.CheckIfFull())
+            if (InventorySystem.Instance.CheckIfFull())
             {
                 Debug.Log("Inventory is full");
                 return;
             }
 
-            Debug.Log(GetItemName() + " is picked up");
             InventorySystem.Instance.AddToInventory(ItemName);
             Destroy(gameObject);
         }

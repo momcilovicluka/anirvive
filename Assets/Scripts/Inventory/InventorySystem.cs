@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using TextMeshProUGUI = TMPro.TextMeshProUGUI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class InventorySystem : MonoBehaviour
     public List<GameObject> slotList = new List<GameObject>();
     private GameObject itemToAdd;
     private GameObject equipSlot;
+
+    public GameObject pickupAlert;
+    public TextMeshProUGUI pickupName;
+    public Image pickupImage;
 
     private void Awake()
     {
@@ -61,10 +67,15 @@ public class InventorySystem : MonoBehaviour
     public void AddToInventory(string item)
     {
         equipSlot = NextEmptySlot();
-        Debug.Log("Adding " + item + " to inventory");
         itemToAdd = Instantiate(Resources.Load<GameObject>("InventoryItems/" + item), equipSlot.transform.position, equipSlot.transform.rotation);
         itemToAdd.transform.SetParent(equipSlot.transform);
+
         itemList.Add(item);
+
+        TriggerPickupPopup(item, itemToAdd.GetComponent<Image>().sprite);
+
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
     public void RemoveItem(string nameToRemove, int amount)
@@ -82,6 +93,9 @@ public class InventorySystem : MonoBehaviour
                 }
             }
         }
+
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
     public void ReCalculateList()
@@ -91,6 +105,20 @@ public class InventorySystem : MonoBehaviour
         foreach (GameObject slot in slotList)
             if (slot.transform.childCount > 0)
                 itemList.Add(slot.transform.GetChild(0).name.Replace("(Clone)", ""));
+    }
+
+    private void TriggerPickupPopup(string itemName, Sprite itemSprite)
+    {
+        pickupAlert.SetActive(true);
+        pickupName.text = itemName;
+        pickupImage.sprite = itemSprite;
+        StartCoroutine(waitAndClose());
+    }
+
+    public IEnumerator<WaitForSeconds> waitAndClose()
+    {
+        yield return new WaitForSeconds(3f);
+        pickupAlert.SetActive(false);
     }
 
     private GameObject NextEmptySlot()

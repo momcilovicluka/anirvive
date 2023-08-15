@@ -14,12 +14,12 @@ public class CraftingSystem : MonoBehaviour
     private Button toolsBTN;
     private Button craftAxeBTN;
     private TextMeshProUGUI AxeReq1, AxeReq2;
-    public bool isOpen;
+    public bool isOpen = false;
 
     // Blueprints
     public Blueprint AxeBLP = new Blueprint("Axe", 2, "Stone", 3, "Stick", 3);
 
-    public static CraftingSystem Instance { get; private set; }
+    public static CraftingSystem Instance { get; set; }
 
     private void Awake()
     {
@@ -58,8 +58,6 @@ public class CraftingSystem : MonoBehaviour
             InventorySystem.Instance.RemoveItem(blueprintToCraft.Req2, blueprintToCraft.Req2Amount);
 
         StartCoroutine(calculate());
-
-        RefreshNeededItems();
     }
 
     public IEnumerator<WaitForSeconds> calculate()
@@ -67,6 +65,8 @@ public class CraftingSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         InventorySystem.Instance.ReCalculateList();
+
+        RefreshNeededItems();
     }
 
     private void OpenToolsCategory()
@@ -78,8 +78,6 @@ public class CraftingSystem : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        RefreshNeededItems();
-
         if (Input.GetKeyDown(KeyCode.C) && !isOpen)
         {
             craftingScreenUI.SetActive(true);
@@ -97,7 +95,7 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
-    private void RefreshNeededItems()
+    public void RefreshNeededItems()
     {
         int stoneCount = 0;
         int stickCount = 0;

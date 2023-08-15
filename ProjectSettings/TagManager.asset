@@ -12,6 +12,7 @@ TagManager:
   - PlayerHealthBar
   - Waypoint
   - Slot
+  - Pickable
   layers:
   - Default
   - TransparentFX

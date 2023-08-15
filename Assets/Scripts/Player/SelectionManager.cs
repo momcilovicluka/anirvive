@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
-    public static SelectionManager instance { get; private set; }
-
     public TMPro.TextMeshProUGUI interactionInfo;
     public bool onTarget;
     public GameObject selectedObject;
+
+    public Image centerDotIcon;
+    public Image handIcon;
+    public static SelectionManager instance { get; private set; }
 
     private void Awake()
     {
@@ -37,20 +40,35 @@ public class SelectionManager : MonoBehaviour
 
             if (interactableObject && interactableObject.playerInRange)
             {
-                interactionInfo.text = interactableObject.GetItemName() + " (E)";
                 onTarget = true;
                 selectedObject = interactableObject.gameObject;
+                interactionInfo.text = interactableObject.GetItemName() + " (E)";
+
+                if (interactableObject.CompareTag("Pickable"))
+                {
+                    centerDotIcon.gameObject.SetActive(false);
+                    handIcon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    centerDotIcon.gameObject.SetActive(true);
+                    handIcon.gameObject.SetActive(false);
+                }
             }
             else
             {
                 interactionInfo.text = "";
                 onTarget = false;
+                centerDotIcon.gameObject.SetActive(true);
+                handIcon.gameObject.SetActive(false);
             }
         }
         else
         {
             interactionInfo.text = "";
             onTarget = false;
+            centerDotIcon.gameObject.SetActive(true);
+            handIcon.gameObject.SetActive(false);
         }
     }
 }
