@@ -3,26 +3,27 @@
 public class LookPlayer : MonoBehaviour
 {
     [SerializeField]
-    Transform character;
+    private Transform character;
+
     public float sensitivity = 2;
     public float smoothing = 1.5f;
 
-    Vector2 velocity;
-    Vector2 frameVelocity;
+    private Vector2 velocity;
+    private Vector2 frameVelocity;
 
-    void Reset()
+    private void Reset()
     {
         character = GetComponentInParent<PlayerMovementController>().transform;
     }
 
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void Update()
     {
-        if (InventorySystem.Instance.isOpen)
+        if (InventorySystem.Instance.isOpen || CraftingSystem.Instance.isOpen)
         {
             character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
             return;
