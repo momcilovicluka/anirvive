@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerState : MonoBehaviour
@@ -9,19 +7,22 @@ public class PlayerState : MonoBehaviour
 
     // ----- Player Health ----- //
     public float currentHealth;
+
     public float maxHealth;
 
     // ----- Player Calories ----- //
     public float currentCalories;
+
     public float maxCalories;
 
-    float distanceTravelled = 0f;
-    Vector3 lastPosition;
+    private float distanceTravelled = 0f;
+    private Vector3 lastPosition;
 
     public GameObject playerBody;
 
     // ----- Player Hydration ----- //
     public float currentHydration;
+
     public float maxHydration;
 
     private void Start()
@@ -33,14 +34,14 @@ public class PlayerState : MonoBehaviour
         StartCoroutine(decreaseHydration());
     }
 
-    IEnumerator decreaseHydration()
+    private IEnumerator decreaseHydration()
     {
         while (true)
         {
             yield return new WaitForSeconds(10);
             currentHydration--;
         }
-    }   
+    }
 
     private void Awake()
     {
@@ -57,12 +58,12 @@ public class PlayerState : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         distanceTravelled += Vector3.Distance(playerBody.transform.position, lastPosition);
         lastPosition = playerBody.transform.position;
 
-        if(distanceTravelled >= 5)
+        if (distanceTravelled >= 5)
         {
             distanceTravelled = 0;
             currentCalories--;

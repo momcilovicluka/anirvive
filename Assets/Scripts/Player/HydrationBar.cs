@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +17,7 @@ public class HydrationBar : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         currentHydration = playerState.GetComponent<PlayerState>().currentHydration;
         maxHydration = playerState.GetComponent<PlayerState>().maxHydration;

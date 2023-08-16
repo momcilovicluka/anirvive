@@ -9,15 +9,17 @@ public class SelectionManager : MonoBehaviour
 
     public Image centerDotIcon;
     public Image handIcon;
-    public static SelectionManager instance { get; private set; }
+    public static SelectionManager Instance { get; private set; }
+
+    public bool handIsVisible;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
-        else instance = this;
+        else Instance = this;
     }
 
     private void Start()
@@ -48,11 +50,15 @@ public class SelectionManager : MonoBehaviour
                 {
                     centerDotIcon.gameObject.SetActive(false);
                     handIcon.gameObject.SetActive(true);
+
+                    handIsVisible = true;
                 }
                 else
                 {
                     centerDotIcon.gameObject.SetActive(true);
                     handIcon.gameObject.SetActive(false);
+
+                    handIsVisible = false;
                 }
             }
             else
@@ -61,6 +67,8 @@ public class SelectionManager : MonoBehaviour
                 onTarget = false;
                 centerDotIcon.gameObject.SetActive(true);
                 handIcon.gameObject.SetActive(false);
+
+                handIsVisible = false;
             }
         }
         else
@@ -69,6 +77,22 @@ public class SelectionManager : MonoBehaviour
             onTarget = false;
             centerDotIcon.gameObject.SetActive(true);
             handIcon.gameObject.SetActive(false);
+
+            handIsVisible = false;
         }
+    }
+
+    public void DisableSelection()
+    {
+        handIcon.enabled = false;
+        centerDotIcon.enabled = false;
+        interactionInfo.text = "";
+        selectedObject = null;
+    }
+
+    public void EnableSelection()
+    {
+        centerDotIcon.gameObject.SetActive(true);
+        handIcon.gameObject.SetActive(false);
     }
 }

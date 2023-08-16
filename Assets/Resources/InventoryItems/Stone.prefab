@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2242c7c7df6eaac4bb99ffd3437aec82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrashable: 0
+  isTrashable: 1
   thisName: Stone
   thisDescription: You know what stone is and if you don't, you are probably stoned
   thisFunctionality: Used for crafting and stuff
@@ -122,3 +122,6 @@ MonoBehaviour:
   healthEffect: 0
   caloriesEffect: 0
   hydrationEffect: 0
+  isEquipable: 0
+  isInsideQuickSlot: 0
+  isSelected: 0

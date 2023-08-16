@@ -12,7 +12,7 @@ public class InteractableObject : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && SelectionManager.instance.onTarget && SelectionManager.instance.selectedObject == gameObject)
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && SelectionManager.Instance.onTarget && SelectionManager.Instance.selectedObject == gameObject)
         {
             if (InventorySystem.Instance.CheckIfFull())
             {

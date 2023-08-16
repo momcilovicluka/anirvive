@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.dgreenheck.openfracture": "https://github.com/dgreenheck/OpenFracture.git",
     "com.unity.ai.navigation": "1.1.4",
     "com.unity.autolod": "https://github.com/Unity-Technologies/AutoLOD.git",
     "com.unity.cinemachine": "2.9.7",

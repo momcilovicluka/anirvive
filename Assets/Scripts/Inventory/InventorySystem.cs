@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using TextMeshProUGUI = TMPro.TextMeshProUGUI;
 using UnityEngine;
 using UnityEngine.UI;
+using TextMeshProUGUI = TMPro.TextMeshProUGUI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -38,6 +38,8 @@ public class InventorySystem : MonoBehaviour
         isFull = false;
 
         PopulateSlotList();
+
+        Cursor.visible = false;
     }
 
     private void PopulateSlotList()
@@ -53,13 +55,24 @@ public class InventorySystem : MonoBehaviour
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            SelectionManager.Instance.DisableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
+
             isOpen = true;
         }
         else if (Input.GetKeyDown(KeyCode.I) && isOpen)
         {
             inventoryScreenUI.SetActive(false);
             if (!CraftingSystem.Instance.isOpen)
+            {
+                Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+            }
+
+            SelectionManager.Instance.EnableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
 
             isOpen = false;
         }
