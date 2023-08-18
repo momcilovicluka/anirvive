@@ -1,9 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Creates wandering behaviour for a CharacterController.
-/// </summary>
 [RequireComponent(typeof(CharacterController))]
 public class Wander : MonoBehaviour
 {
@@ -23,12 +20,15 @@ public class Wander : MonoBehaviour
     private float heading;
     private Vector3 targetRotation;
 
+    private GameObject player;
+
+    private bool toPlayer;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        // Set random initial rotation
         heading = Random.Range(0, 360);
         transform.eulerAngles = new Vector3(0, heading, 0);
 
@@ -38,6 +38,8 @@ public class Wander : MonoBehaviour
         walkTime = (walkTime > 0 ? walkTime : Random.Range(1f, 4f)) + Random.Range(0f, 2f);
         walkCounter = walkTime;
 
+        player = GameObject.FindGameObjectWithTag("Player");
+
         StartCoroutine(NewHeading());
     }
 
@@ -46,7 +48,14 @@ public class Wander : MonoBehaviour
         if (isWalking)
         {
             animator.SetBool("isRunning", true);
-            transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
+            if (!toPlayer)
+                transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
+            else
+            { 
+                transform.LookAt(player.transform);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            }
+
             var forward = transform.TransformDirection(Vector3.forward);
             controller.SimpleMove(forward * speed);
 
@@ -70,10 +79,6 @@ public class Wander : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Repeatedly calculates a new direction to move towards.
-    /// Use this instead of MonoBehaviour.InvokeRepeating so that the interval can be changed at runtime.
-    /// </summary>
     private IEnumerator NewHeading()
     {
         while (true)
@@ -83,14 +88,17 @@ public class Wander : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Calculates a new direction to move towards.
-    /// </summary>
     private void NewHeadingRoutine()
     {
-        var floor = Mathf.Clamp(heading - maxHeadingChange, 0, 360);
-        var ceil = Mathf.Clamp(heading + maxHeadingChange, 0, 360);
-        heading = Random.Range(floor, ceil);
-        targetRotation = new Vector3(0, heading, 0);
+        if (!(Vector3.Distance(transform.position, player.transform.position) > 30f))
+        {
+            var floor = Mathf.Clamp(heading - maxHeadingChange, 0, 360);
+            var ceil = Mathf.Clamp(heading + maxHeadingChange, 0, 360);
+            heading = Random.Range(floor, ceil);
+            targetRotation = new Vector3(0, heading, 0);
+            toPlayer = false;
+        }
+        else
+            toPlayer = true;
     }
 }
