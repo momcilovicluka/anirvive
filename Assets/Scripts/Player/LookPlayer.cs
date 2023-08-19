@@ -23,7 +23,7 @@ public class LookPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (InventorySystem.Instance.isOpen || CraftingSystem.Instance.isOpen)
+        if (InventorySystem.Instance.isOpen || CraftingSystem.Instance.isOpen || MenuManager.Instance.isMenuOpen)
         {
             character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
             return;
