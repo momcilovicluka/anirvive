@@ -15,10 +15,10 @@ OcclusionCullingData:
     sizePortals: 0
     scene: 4fa9ac53940d08a4d81430b13dd5ab5c
   m_StaticRenderers:
-  - targetObject: 8054991817947142850
-    targetPrefab: 1771779993
-  - targetObject: 5961683112752888721
-    targetPrefab: 1771779993
-  - targetObject: 4006331061487646207
-    targetPrefab: 1771779993
+  - targetObject: 5517527136892618916
+    targetPrefab: 3946471079664593223
+  - targetObject: 8949880044306325160
+    targetPrefab: 3946471079664593223
+  - targetObject: 7785691797132096220
+    targetPrefab: 3946471079664593223
   m_Portals: []

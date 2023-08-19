@@ -18,11 +18,10 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("OnDrop");
-
-        //if there is not item already then set our item.
         if (!Item)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.dropItemSound);
+
             DragNDrop.itemBeingDragged.transform.SetParent(transform);
             DragNDrop.itemBeingDragged.transform.localPosition = new Vector2(0, 0);
 

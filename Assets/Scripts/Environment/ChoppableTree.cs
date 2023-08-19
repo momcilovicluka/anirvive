@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
@@ -29,7 +27,7 @@ public class ChoppableTree : MonoBehaviour
             canBeChopped = true;
         }
     }
-    
+
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -49,7 +47,6 @@ public class ChoppableTree : MonoBehaviour
 
         if (treeHealth <= 0)
             TreeIsDead();
-
     }
 
     public void TreeIsDead()
@@ -63,18 +60,22 @@ public class ChoppableTree : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            Vector3 stickPosition = new Vector3(treePosition.x + Random.Range(-0.5f, 0.5f), treePosition.y, treePosition.z + Random.Range(-0.5f, 0.5f));
+            Vector3 stickPosition = new Vector3(treePosition.x + Random.Range(-1f, 1f), treePosition.y, treePosition.z + Random.Range(-1f, 1f));
             GameObject brokenTree = Instantiate(Resources.Load<GameObject>("Stick"), stickPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            Vector3 applePosition = new Vector3(treePosition.x + Random.Range(-5f, 5f), treePosition.y, treePosition.z + Random.Range(-5f, 5f));
+            GameObject apple = Instantiate(Resources.Load<GameObject>("Apple"), applePosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
         }
     }
 
     private void Update()
     {
-        if(canBeChopped)
+        if (canBeChopped)
         {
             GlobalState.Instance.resourceHealth = treeHealth;
             GlobalState.Instance.resourceMaxHealth = treeMaxHealth;
         }
     }
-    
 }

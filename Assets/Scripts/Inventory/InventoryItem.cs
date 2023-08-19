@@ -46,7 +46,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         gameObject.GetComponent<DragNDrop>().enabled = !isSelected;
     }
 
-    // Triggered when the mouse enters into the area of the item that has this script.
     public void OnPointerEnter(PointerEventData eventData)
     {
         itemInfoUI.SetActive(true);
@@ -55,21 +54,18 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemInfoUI_itemFunctionality.text = thisFunctionality;
     }
 
-    // Triggered when the mouse exits the area of the item that has this script.
     public void OnPointerExit(PointerEventData eventData)
     {
         itemInfoUI.SetActive(false);
     }
 
-    // Triggered when the mouse is clicked over the item that has this script.
     public void OnPointerDown(PointerEventData eventData)
     {
-        //Right Mouse Button Click on
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             if (isConsumable)
             {
-                // Setting this specific gameobject to be the item we want to destroy later
+                SoundManager.Instance.PlaySound(SoundManager.Instance.eatSound);
                 itemPendingConsumption = gameObject;
                 consumingFunction(healthEffect, caloriesEffect, hydrationEffect);
             }
@@ -82,7 +78,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    // Triggered when the mouse button is released over the item that has this script.
     public void OnPointerUp(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)

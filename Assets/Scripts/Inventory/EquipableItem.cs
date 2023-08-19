@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -15,8 +16,16 @@ public class EquipableItem : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !InventorySystem.Instance.isOpen && !CraftingSystem.Instance.isOpen && !SelectionManager.Instance.handIsVisible)
+        {
+            StartCoroutine(SwingSoundDelay());
             animator.SetTrigger("hit");
-        
+        }
+    }
+
+    private IEnumerator SwingSoundDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
     }
 
     public void GetHit()
@@ -24,6 +33,9 @@ public class EquipableItem : MonoBehaviour
         GameObject selectedTree = SelectionManager.Instance.selectedTree;
 
         if (selectedTree != null)
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
             selectedTree.GetComponent<ChoppableTree>().GetHit();
+        }
     }
 }

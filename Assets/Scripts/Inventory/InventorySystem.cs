@@ -80,6 +80,8 @@ public class InventorySystem : MonoBehaviour
 
     public void AddToInventory(string item)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
+
         equipSlot = NextEmptySlot();
         itemToAdd = Instantiate(Resources.Load<GameObject>("InventoryItems/" + item), equipSlot.transform.position, equipSlot.transform.rotation);
         itemToAdd.transform.SetParent(equipSlot.transform);
