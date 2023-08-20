@@ -92,6 +92,8 @@ public class InventorySystem : MonoBehaviour
 
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
+
+        QuestManager.Instance.RefreshTrackerList();
     }
 
     public void RemoveItem(string nameToRemove, int amount)
@@ -112,6 +114,8 @@ public class InventorySystem : MonoBehaviour
 
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
+
+        QuestManager.Instance.RefreshTrackerList();
     }
 
     public void ReCalculateList()
@@ -154,5 +158,16 @@ public class InventorySystem : MonoBehaviour
                 count++;
 
         return count == 28;
+    }
+
+    public int CheckItemAmount(string name)
+    {
+        int count = 0;
+
+        foreach (string item in itemList)
+            if (item == name)
+                count++;
+
+        return count;
     }
 }

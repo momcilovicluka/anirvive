@@ -8,8 +8,10 @@ Keybinds:
 * Left Click -> Use item in hand
 * Right Click -> Consume item in inventory/send to quickslot
 * Scroll Whell -> Zoom
+* E -> Interact
 * I -> Inventory
 * C -> Crafting Menu
+* Q -> Quests Menu
 * Esc/M -> Menu
 * 1 ... 7 -> Select QuickSlot Item
 

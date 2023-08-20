@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e8fa5976a33644e93b00daac66815c, type: 3}
+  m_Name: First_NPC_Quest1
+  m_EditorClassIdentifier: 
+  initialDialog:
+  - Oh, there you are, darling. I've sensed your presence long before you stepped
+    into my world. I find myself in need of assistance. Let mommy tell you what's
+    wrong.
+  - The balance of this realm is off-kilter, disrupted by the overpopulation of light
+    rabbits. Though they may seem kawaii UwU and harmless, they feed on the life
+    force of this land, leaving only decay in their wake.
+  - 'I need you to thin their numbers. Will you accept this dark task? In return,
+    I offer you a piece of my own power, a reward that transcends the mundane. '
+  - Remember, appearances can be deceiving, and in our world, not everything is as
+    it seems. There's always more than meets the eye.
+  acceptOption: Shadow bunnies? Heh, guess it's time to put 'Bunny Wrangler' on my
+    inter-dimensional resume.
+  acceptAnswer: Well, look who's stepping up! Didn't think you had it in you, but
+    you're full of surprises, aren't you?
+  declineOption: As much as I'd love to add 'Professional Fluff-Chaser' to my list
+    of isekai achievements... I think I'll pass. I mean, what's next? Ghostly goldfish?
+    Ping me when there's a non-furry apocalypse!
+  declineAnswer: Oh, honey, backing out so soon? Thought you had a bit more spark
+    in you. It's cool, though. When you're ready to step up to the big leagues, you
+    know where to find me. Until then, toodles!
+  comebackAfterDecline: Oh? Back so soon? Realized you can't resist the allure of
+    light bunnies? Or just missed my charming company? Maybe the thought of getting
+    a little furry action tempted you back? Don't worry, I won't tell. Ready to hop
+    into the fray this time?
+  comebackInProgress: Aww, sweetie, still tussling with those elusive shadow bunnies?
+    They sure are more slippery than they appear, huh? But remember, every hero needs
+    their... let's say, 'beach episode' moment. Think of this as your playful, little
+    filler challenge before the big plot twist. And darling, always remember, mommy's
+    here cheering you on. Need a little encouragement or just craving mommy's comforting
+    words? Just pop by. Now, be careful out there and no running with those swords,
+    okay?
+  comebackCompleted: Well, if it isn't the bunny conqueror! Managed to wrangle those
+    fluffy bunnies without getting your hands too dirty? Impressive. But then again,
+    I had a feeling you'd be good with your hands. Here's the reward I promised,
+    though I'm sure you're curious about other... rewards I might offer. Stick around,
+    and you just might find out. Ready for what comes next, or need a breather?
+  finalWords: "Well, well, didn't expect Mr. Bunny Wrangler to steal the show, did
+    we? You've got moves, and I'm not just talking about the quest. Until our paths
+    cross again \u2013 and trust me, they will \u2013 stay wild and unpredictable.
+    Catch you on the flip side!"
+  coinReward: 25
+  rewardItem1: Stick
+  rewardItem2: Stick
+  firstRequirmentItem: Stone
+  firstRequirementAmount: 2
+  secondRequirmentItem: 
+  secondRequirementAmount: 0

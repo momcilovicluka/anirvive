@@ -22,6 +22,11 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (DialogSystem.Instance.dialogUIActive)
+        {
+            return;
+        }
+
         IsRunning = canRun && Input.GetKey(runningKey);
 
         float targetMovingSpeed = IsRunning ? runSpeed : speed;

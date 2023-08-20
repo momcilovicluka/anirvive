@@ -45,6 +45,28 @@ public class SelectionManager : MonoBehaviour
 
             ChoppableTree choppableTree = selectionTransform.GetComponent<ChoppableTree>();
 
+            NPC npc = selectionTransform.GetComponent<NPC>();
+
+            if (npc && npc.playerInRange)
+            {
+                interactionInfo.text += "Talk (E)";
+
+                if(Input.GetKeyDown(KeyCode.E) && !npc.isTalkingWithPlayer)
+                {
+                    npc.StartConversation();
+                }
+
+                if(DialogSystem.Instance.dialogUIActive)
+                {
+                    interactionInfo.text = "";
+                    centerDotIcon.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                interactionInfo.text = "";
+            }
+
             if (choppableTree && choppableTree.playerInRange)
             {
                 choppableTree.canBeChopped = true;
