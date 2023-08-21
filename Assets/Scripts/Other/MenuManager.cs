@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.M)) && !isMenuOpen)
         {
-            Time.timeScale = 0f;
+            Time.timeScale = 0.3f;
 
             uiCanvas.SetActive(false);
             menuCanvas.SetActive(true);

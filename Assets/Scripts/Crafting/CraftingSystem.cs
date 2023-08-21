@@ -14,10 +14,13 @@ public class CraftingSystem : MonoBehaviour
     private Button toolsBTN;
     private Button craftAxeBTN;
     private TextMeshProUGUI AxeReq1, AxeReq2;
+    private Button craftAOTSwordBTN;
+    private TextMeshProUGUI AOTSwordReq1, AOTSwordReq2;
     public bool isOpen = false;
 
     // Blueprints
     public Blueprint AxeBLP = new Blueprint("Axe", 2, "Stone", 3, "Stick", 3);
+    public Blueprint AOTSword = new Blueprint("AOTSword", 2, "Stone", 1, "Stick", 3);
 
     public static CraftingSystem Instance { get; set; }
 
@@ -42,10 +45,17 @@ public class CraftingSystem : MonoBehaviour
         toolsBTN = craftingScreenUI.transform.Find("ToolsButton").GetComponent<Button>();
         toolsBTN.onClick.AddListener(delegate { OpenToolsCategory(); });
 
+        // Axe
         AxeReq1 = toolScreenUI.transform.Find("Axe").transform.Find("req1").GetComponent<TextMeshProUGUI>();
         AxeReq2 = toolScreenUI.transform.Find("Axe").transform.Find("req2").GetComponent<TextMeshProUGUI>();
         craftAxeBTN = toolScreenUI.transform.Find("Axe").transform.Find("Button").GetComponent<Button>();
         craftAxeBTN.onClick.AddListener(delegate { CraftAnyItem(AxeBLP); });
+
+        // AOTSword
+        AOTSwordReq1 = toolScreenUI.transform.Find("AOTSword").transform.Find("req1").GetComponent<TextMeshProUGUI>();
+        AOTSwordReq2 = toolScreenUI.transform.Find("AOTSword").transform.Find("req2").GetComponent<TextMeshProUGUI>();
+        craftAOTSwordBTN = toolScreenUI.transform.Find("AOTSword").transform.Find("Button").GetComponent<Button>();
+        craftAOTSwordBTN.onClick.AddListener(delegate { CraftAnyItem(AOTSword); });
     }
 
     private void CraftAnyItem(Blueprint blueprintToCraft)
@@ -145,5 +155,14 @@ public class CraftingSystem : MonoBehaviour
             craftAxeBTN.interactable = true;
         else
             craftAxeBTN.interactable = false;
+
+        // AOTSWORD
+        AOTSwordReq1.text = "1 Stone [" + stoneCount + "]";
+        AOTSwordReq2.text = "3 Stick [" + stickCount + "]";
+
+        if (stoneCount >= 1 && stickCount >= 3)
+            craftAOTSwordBTN.interactable = true;
+        else
+            craftAOTSwordBTN.interactable = false;
     }
 }

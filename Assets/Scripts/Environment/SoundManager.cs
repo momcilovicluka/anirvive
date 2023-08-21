@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource backgroundMusic;
     public AudioSource ambientSounds;
+    public AudioSource voiceovers;
 
     private void Awake()
     {
@@ -30,5 +31,29 @@ public class SoundManager : MonoBehaviour
     {
         if (!soundToPlay.isPlaying)
             soundToPlay.Play();
+    }
+
+    public void PlayVoiceOver(AudioClip clip)
+    {
+        voiceovers.clip = clip;
+
+        if (!voiceovers.isPlaying)
+            voiceovers.Play();
+        else
+        {
+            voiceovers.Stop();
+            voiceovers.Play();
+        }
+    }
+
+    public bool IsPlayingVoiceOver()
+    {
+        return voiceovers.isPlaying;
+    }
+
+    public void StopSound(AudioSource soundToStop)
+    {
+        if (soundToStop.isPlaying)
+            soundToStop.Stop();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -164,6 +165,35 @@ public class EquipSystem : MonoBehaviour
         if (counter == 7)
         {
             return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    internal bool IsHoldingWeapon()
+    {
+        if(selectedItem != null && selectedItem.GetComponent<Weapon>() != null)
+            return true;
+        else
+            return false;
+
+    }
+
+    internal int GetWeaponDamage()
+    {
+        if (selectedItem != null)
+            return selectedItem.GetComponent<Weapon>().weaponDamage;
+        else
+            return 0;
+    }
+
+    internal bool IsThereASwingLock()
+    {
+        if(selectedItemModel && selectedItemModel.GetComponent<EquipableItem>())
+        {
+            return selectedItemModel.GetComponent<EquipableItem>().swingWait;
         }
         else
         {
