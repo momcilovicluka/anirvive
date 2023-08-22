@@ -1,6 +1,8 @@
 # anirvive - Anime-Survive
 First person survival game made in unity for Seminarski rad C
 
+Download Link: https://drive.google.com/drive/folders/1MwEctZXvfNnYFv9mv4hkdEyFPUshMBM3?usp=sharing
+
 ## Keybinds:
 * W, A, S, D -> Move
 * LCTRL -> Crouch
