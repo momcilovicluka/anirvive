@@ -21,6 +21,6 @@ public class AddTrees : MonoBehaviour
         }
 
         List<TreeInstance> newTrees = new List<TreeInstance>(0);
-        //terrain.treeInstances = newTrees.ToArray();
+        terrain.treeInstances = newTrees.ToArray();
     }
 }

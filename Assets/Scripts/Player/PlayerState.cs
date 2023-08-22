@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
@@ -68,6 +69,9 @@ public class PlayerState : MonoBehaviour
             distanceTravelled = 0;
             currentCalories--;
         }
+
+        if (currentHealth <= 0)
+            SceneManager.LoadScene("MainScene");
     }
 
     internal void setHealth(float maxHealth)
