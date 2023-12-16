@@ -3,7 +3,7 @@ First person survival game made in unity for Seminarski rad C
 
 Download Link: https://drive.google.com/drive/folders/1MwEctZXvfNnYFv9mv4hkdEyFPUshMBM3?usp=sharing
 
-## Keybinds:
+## Keybinds 🎮:
 * W, A, S, D -> Move
 * LCTRL -> Crouch
 * Space -> Jump
@@ -18,14 +18,13 @@ Download Link: https://drive.google.com/drive/folders/1MwEctZXvfNnYFv9mv4hkdEyFP
 * Esc/M -> Menu
 * 1 ... 7 -> Select QuickSlot Item
 
-## Licenses
-### Background music:
+## Licenses 📜
+### Background music 🎵:
 * Song: Jarico - Island Music 
-* supported by@FreeBackgroundMusicForCreators 
-* #BackgroundMusicWithoutLimitations  
-* https://bit.ly/2XoXFnb
+* supported by@FreeBackgroundMusicForCreators   
+* [#BackgroundMusicWithoutLimitations](https://bit.ly/2XoXFnb)
 
-### Models:
+### Models 🗿:
 * "Cynthia_Renegade_20" (https://skfb.ly/oKoor) by PixartistLilack is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
 * "Lance of Longinus" (https://skfb.ly/6Rxyq) by Mr. The Rich is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
