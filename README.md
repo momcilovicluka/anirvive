@@ -1,4 +1,6 @@
 # anirvive - Anime-Survive
+![GitHub Repo stars](https://img.shields.io/github/stars/momcilovicluka/anirvive?style=for-the-badge&color=0000ff) ![GitHub last commit](https://img.shields.io/github/last-commit/momcilovicluka/anirvive?style=for-the-badge&color=0000ff) ![GitHub repo size](https://img.shields.io/github/repo-size/momcilovicluka/anirvive?style=for-the-badge&color=0000ff)
+
 First person survival game made in unity for Seminarski rad C
 
 Download Link: https://drive.google.com/drive/folders/1MwEctZXvfNnYFv9mv4hkdEyFPUshMBM3?usp=sharing
